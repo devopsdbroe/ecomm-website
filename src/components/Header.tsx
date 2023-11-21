@@ -1,10 +1,17 @@
+"use client";
+
 import Container from "./Container";
 import Logo from "./Logo";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiLogOut } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoMdCart } from "react-icons/io";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 const Header = () => {
+	const { data: session } = useSession();
+	console.log(session);
+
 	return (
 		<div className="bg-bodyColor h-20">
 			<Container className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
@@ -19,10 +26,12 @@ const Header = () => {
 					></input>
 				</div>
 				{/* Login/Register */}
-				<div className="bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full hover:bg-white border-[1px] border-gray-200 hover:border-orange-500 duration-200">
-					<AiOutlineUser className="text-2xl" />
-					<p className="text-sm font-semibold">Login/Register</p>
-				</div>
+				{!session && (
+					<div onClick={() => signIn()} className="headerDiv">
+						<AiOutlineUser className="text-2xl" />
+						<p className="text-sm font-semibold">Login/Register</p>
+					</div>
+				)}
 				{/* Cart button */}
 				<div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
 					<IoMdCart className="text-xl" />
@@ -31,6 +40,23 @@ const Header = () => {
 						0
 					</span>
 				</div>
+				{/* User image */}
+				{session && (
+					<Image
+						src={session?.user?.image as string}
+						alt="user image"
+						width={50}
+						height={50}
+						className="rounded-full object-cover"
+					/>
+				)}
+				{/* Logout button */}
+				{session && (
+					<div onClick={() => signOut()} className="headerDiv px-2 gap-x-1">
+						<FiLogOut className="text-2xl" />
+						<p className="text-sm font-semibold">Logout</p>
+					</div>
+				)}
 			</Container>
 		</div>
 	);
