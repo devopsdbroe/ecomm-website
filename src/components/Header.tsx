@@ -7,9 +7,25 @@ import { AiOutlineUser } from "react-icons/ai";
 import { IoMdCart } from "react-icons/io";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { Products, StateProps } from "../../type";
+import { useEffect, useState } from "react";
+import FormattedPrice from "./FormattedPrice";
 
 const Header = () => {
 	const { data: session } = useSession();
+	const { productData } = useSelector((state: StateProps) => state.shopping);
+
+	const [totalAmt, setTotalAmt] = useState(0);
+
+	useEffect(() => {
+		let amt = 0;
+		productData.map((item: Products) => {
+			amt += item.price * item.quantity;
+			return;
+		});
+		setTotalAmt(amt);
+	}, [productData]);
 
 	return (
 		<div className="bg-bodyColor h-20 top-0 sticky z-50">
@@ -34,9 +50,11 @@ const Header = () => {
 				{/* Cart button */}
 				<div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
 					<IoMdCart className="text-xl" />
-					<p className="text-sm font-semibold">$0.00</p>
+					<p className="text-sm font-semibold">
+						<FormattedPrice amount={totalAmt ? totalAmt : 0} />
+					</p>
 					<span className="bg-white text-orange-600 rounded-full text-xs font-semibold absolute -right-2 -top-1 w-5 h-5 flex items-center justify-center shadow-xl shadow-black">
-						0
+						{productData ? productData?.length : 0}
 					</span>
 				</div>
 				{/* User image */}
