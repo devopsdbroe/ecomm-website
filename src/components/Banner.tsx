@@ -13,7 +13,7 @@ const Banner = () => {
 		const { onClick } = props;
 		return (
 			<div
-				className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute right-1 top-1/2"
+				className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute right-2 top-1/2"
 				onClick={onClick}
 			>
 				<PiCaretRightLight />
@@ -25,7 +25,7 @@ const Banner = () => {
 		const { onClick } = props;
 		return (
 			<div
-				className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute left-1 top-1/2"
+				className="p-3 bg-slate-100 hover:text-orange-600 hover:bg-white cursor-pointer duration-200 rounded-full text-2xl flex items-center justify-center z-20 absolute left-2 top-1/2"
 				onClick={onClick}
 			>
 				<PiCaretLeftLight />
@@ -72,6 +72,7 @@ const Banner = () => {
 					<BannerText title="Best for men" />
 				</div>
 			</Slider>
+			<div className="absolute w-full h-44 bg-gradient-to-t from-gray-100 to-transparent bottom-0 left-0 z-10" />
 		</div>
 	);
 };

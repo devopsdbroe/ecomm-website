@@ -2,7 +2,7 @@ import Container from "./Container";
 import { motion } from "framer-motion";
 
 interface Props {
-	title: String;
+	title: string;
 }
 
 const BannerText = ({ title }: Props) => {
