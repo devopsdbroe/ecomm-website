@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import FormattedPrice from "./FormattedPrice";
 import Link from "next/link";
 import { addUser, deleteUser } from "@/redux/shoppingSlice";
+import { BsBookmarks } from "react-icons/bs";
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -87,6 +88,16 @@ const Header = () => {
 						height={50}
 						className="rounded-full object-cover"
 					/>
+				)}
+				{/* Order details button */}
+				{orderData?.order?.length > 0 && session && (
+					<Link
+						href={"/order"}
+						className="headerDiv px-2 gap-x-1 cursor-pointer"
+					>
+						<BsBookmarks className="text-2xl" />
+						<p className="text-sm font-semibold">Orders</p>
+					</Link>
 				)}
 				{/* Logout button */}
 				{session && (
