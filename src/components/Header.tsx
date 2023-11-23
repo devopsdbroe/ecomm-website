@@ -17,7 +17,9 @@ import { addUser, deleteUser } from "@/redux/shoppingSlice";
 const Header = () => {
 	const dispatch = useDispatch();
 	const { data: session } = useSession();
-	const { productData } = useSelector((state: StateProps) => state?.shopping);
+	const { productData, orderData } = useSelector(
+		(state: StateProps) => state?.shopping
+	);
 
 	useEffect(() => {
 		if (session) {
