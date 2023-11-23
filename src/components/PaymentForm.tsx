@@ -58,7 +58,7 @@ const PaymentForm = () => {
 					<button className="bg-black text-slate-100 mt-4 py-3 px-6 cursor-not-allowed hover:bg-orange-950">
 						Proceed to checkout
 					</button>
-					<p className="text-base mt-1 text-red-500 font-semibold animate-bounce">
+					<p className="text-base mt-1 text-red-500 font-semibold">
 						Please login to continue
 					</p>
 				</div>
