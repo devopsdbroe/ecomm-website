@@ -7,8 +7,8 @@ const NotFoundPage = () => {
 			<div className="max-w-2xl min-h-[400px] flex flex-col items-center justify-center gap-y-5">
 				<h2 className="text-4xl font-bold">Page not found</h2>
 				<p className="text-base font-medium text-center">
-					Oops! The page you're looking for does not exist. It might have been
-					moved or deleted
+					Oops! The page you&apos;re looking for does not exist. It might have
+					been moved or deleted
 				</p>
 				<Link
 					href={"/"}
